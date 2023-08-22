@@ -65,7 +65,7 @@ for image_file, cmd_template in commands.items():
     btn = tk.Button(button_frame, image=photo, command=lambda cmd_template=cmd_template: run_command(cmd_template, duration_var))
     btn.image = photo  # Keep a reference to prevent garbage collection
     btn.grid(row=row, column=col, pady=10, padx=5, sticky='w'+'e')
-    balloon.bind(btn, "Command: " + cmd_template.format("[duration]") + "\nExplanation: " + explanations[image_file.replace(".png", "")])
+    balloon.bind(btn, "Command: " + cmd_template.format("[duration]") + "\nExplanation: " + explanations[image_file.replace(".png", "").replace(".jpeg", "")])
 
     # Logic for 2 column layout
     if col == 0:
