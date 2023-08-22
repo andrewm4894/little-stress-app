@@ -15,6 +15,15 @@ def run_command(command_template, duration_var):
     except Exception as e:
         messagebox.showerror("Error", str(e))
 
+
+def stop_stress_ng():
+    try:
+        subprocess.run(["pkill", "stress-ng"])
+    except Exception as e:
+        messagebox.showerror("Error", str(e))
+
+
+
 root = tk.Tk()
 root.title("Stress-ng Command Runner")
 
@@ -73,5 +82,9 @@ for image_file, cmd_template in commands.items():
     else:
         col = 0
         row += 1
+
+# Create and place the stop button
+stop_button = ttk.Button(root, text="Stop All Stressing", command=stop_stress_ng)
+stop_button.pack(pady=10)
 
 root.mainloop()
