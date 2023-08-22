@@ -14,7 +14,7 @@ def main():
 
     # Duration input
     ttk.Label(root, text="Duration (seconds):").pack(pady=5)
-    duration_var = tk.IntVar(value=15)  # default value
+    duration_var = tk.IntVar(value=15)  # default value set to 15 seconds
     ttk.Entry(root, textvariable=duration_var).pack(pady=5)
 
     # Define commands with their emojis
@@ -54,11 +54,15 @@ def main():
         "🌪 Combination Load": "Combines multiple scenarios together for a composite load."
     }
 
-    # Create and place buttons in two columns
+    # Frame for the buttons, so we can use grid inside this frame
+    button_frame = ttk.Frame(root)
+    button_frame.pack(pady=10)
+
+    # Create and place buttons in two columns within button_frame
     row = 0
     col = 0
     for label, cmd_template in commands.items():
-        btn = ttk.Button(root, text=label, command=lambda cmd_template=cmd_template: run_command(cmd_template, duration_var))
+        btn = ttk.Button(button_frame, text=label, command=lambda cmd_template=cmd_template: run_command(cmd_template, duration_var))
         btn.grid(row=row, column=col, pady=10, padx=5, sticky='w'+'e')
         balloon.bind_widget(btn, msg="Command: " + cmd_template.format("[duration]") + "\nExplanation: " + explanations[label])
 
