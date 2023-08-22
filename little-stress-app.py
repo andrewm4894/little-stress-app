@@ -48,6 +48,9 @@ commands = {
     "hdd_load.jpeg": "stress-ng --hdd 2 --timeout {}s",
     "socket_load.jpeg": "stress-ng --sock 6 --timeout {}s",
     "matrix_load.jpeg": "stress-ng --matrix 2 --timeout {}s",
+    "fork_bomb.jpeg": "stress-ng --fork 4 --timeout {}s",
+    "yield_load.jpeg": "stress-ng --yield 4 --timeout {}s",
+    "sem_load.jpeg": "stress-ng --sem 4 --timeout {}s"
 }
 
 explanations = {
@@ -57,6 +60,9 @@ explanations = {
     "hdd_load": "Stresses the hard drive by spawning 2 workers.",
     "socket_load": "Stresses sockets by creating 6 workers.",
     "matrix_load": "Stresses CPU by performing matrix multiplications with 2 workers.",
+    "fork_bomb": "This is a fork bomb, spawning processes exponentially.",
+    "yield_load": "This aggressively yields the processor, stressing kernel scheduling.",
+    "sem_load": "This stresses semaphore operations with 4 workers."
 }
 
 # Button frame
@@ -83,10 +89,9 @@ for image_file, cmd_template in commands.items():
     btn.grid(row=row, column=col, pady=10, padx=5, sticky='w'+'e')
     balloon.bind(btn, "Command: " + cmd_template.format("[duration]") + "\nExplanation: " + explanations[image_file.replace(".png", "").replace(".jpeg", "")])
 
-    # Logic for 2 column layout
-    if col == 0:
-        col = 1
-    else:
+    # Logic for 3x3 layout
+    col += 1
+    if col == 3:
         col = 0
         row += 1
 
