@@ -4,6 +4,8 @@ from PIL import Image, ImageTk
 import os
 import subprocess
 from tkinter import simpledialog, messagebox
+import Pmw
+
 
 def run_command(command_template, duration_var):
     duration = duration_var.get()
@@ -15,6 +17,9 @@ def run_command(command_template, duration_var):
 
 root = tk.Tk()
 root.title("Stress-ng Command Runner")
+
+Pmw.initialise(root)
+balloon = Pmw.Balloon(root)  # for the tooltips
 
 # Set duration frame
 duration_frame = ttk.LabelFrame(root, text="Set Duration (seconds)", padding="10")
@@ -60,6 +65,7 @@ for image_file, cmd_template in commands.items():
     btn = tk.Button(button_frame, image=photo, command=lambda cmd_template=cmd_template: run_command(cmd_template, duration_var))
     btn.image = photo  # Keep a reference to prevent garbage collection
     btn.grid(row=row, column=col, pady=10, padx=5, sticky='w'+'e')
+    balloon.bind_widget(btn, msg="Command: " + cmd_template.format("[duration]") + "\nExplanation: " + explanations[image_file.replace(".png", "")])
 
     # Logic for 2 column layout
     if col == 0:
