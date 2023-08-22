@@ -54,11 +54,20 @@ def main():
         "🌪 Combination Load": "Combines multiple scenarios together for a composite load."
     }
 
-    # Create and place buttons
+    # Create and place buttons in two columns
+    row = 0
+    col = 0
     for label, cmd_template in commands.items():
         btn = ttk.Button(root, text=label, command=lambda cmd_template=cmd_template: run_command(cmd_template, duration_var))
-        btn.pack(pady=10)
+        btn.grid(row=row, column=col, pady=10, padx=5, sticky='w'+'e')
         balloon.bind_widget(btn, msg="Command: " + cmd_template.format("[duration]") + "\nExplanation: " + explanations[label])
+
+        # Logic for 2 column layout
+        if col == 0:
+            col = 1
+        else:
+            col = 0
+            row += 1
 
     root.mainloop()
 
