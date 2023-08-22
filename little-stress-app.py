@@ -30,6 +30,8 @@ root.title("Stress-ng Command Runner")
 Pmw.initialise(root)
 balloon = Pmw.Balloon(root)  # for the tooltips
 
+default_image_path = os.path.join(os.path.dirname(__file__), "fire.jpeg")
+
 # Set duration frame
 duration_frame = ttk.LabelFrame(root, text="Set Duration (seconds)", padding="10")
 duration_frame.pack(padx=10, pady=5, fill="x", expand=True)
@@ -65,9 +67,14 @@ button_frame.pack(padx=10, pady=5, fill="x", expand=True)
 row = 0
 col = 0
 for image_file, cmd_template in commands.items():
-    # Load the image
-    image_path = os.path.join(os.path.dirname(__file__), image_file)
-    image = Image.open(image_path)
+    try:
+        # Attempt to load the specific image
+        image_path = os.path.join(os.path.dirname(__file__), image_file)
+        image = Image.open(image_path)
+    except FileNotFoundError:
+        # If specific image isn't found, load the default image
+        image = Image.open(default_image_path)
+        
     photo = ImageTk.PhotoImage(image)
 
     # Create a button with the image
