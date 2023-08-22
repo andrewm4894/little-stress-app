@@ -27,11 +27,11 @@ duration_spinbox.pack(pady=5)
 # Commands and their explanations
 commands = {
     "cpu_load.jpeg": "stress-ng --cpu 4 --timeout {}s",
-    "memory_load.png": "stress-ng --vm 2 --vm-bytes 256M --timeout {}s",
-    "io_load.png": "stress-ng --io 4 --timeout {}s",
-    "hdd_load.png": "stress-ng --hdd 2 --timeout {}s",
-    "socket_load.png": "stress-ng --sock 6 --timeout {}s",
-    "matrix_load.png": "stress-ng --matrix 2 --timeout {}s",
+    "memory_load.jpeg": "stress-ng --vm 2 --vm-bytes 256M --timeout {}s",
+    "io_load.jpeg": "stress-ng --io 4 --timeout {}s",
+    "hdd_load.jpeg": "stress-ng --hdd 2 --timeout {}s",
+    "socket_load.jpeg": "stress-ng --sock 6 --timeout {}s",
+    "matrix_load.jpeg": "stress-ng --matrix 2 --timeout {}s",
 }
 
 explanations = {
