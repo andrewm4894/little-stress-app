@@ -63,7 +63,7 @@ def main():
     col = 0
     for label, cmd_template in commands.items():
         btn_font = ("Segoe UI Emoji", 10)
-        btn = ttk.Button(button_frame, text=label, command=lambda cmd_template=cmd_template: run_command(cmd_template, duration_var), font=btn_font)
+        btn = tk.Button(button_frame, text=label, command=lambda cmd_template=cmd_template: run_command(cmd_template, duration_var), font=btn_font)
         btn.grid(row=row, column=col, pady=10, padx=5, sticky='w'+'e')
         balloon.bind_widget(btn, msg="Command: " + cmd_template.format("[duration]") + "\nExplanation: " + explanations[label])
 
