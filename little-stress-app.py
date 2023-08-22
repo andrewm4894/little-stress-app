@@ -14,7 +14,7 @@ def main():
 
     # Duration input
     ttk.Label(root, text="Duration (seconds):").pack(pady=5)
-    duration_var = tk.IntVar(value=60)  # default value
+    duration_var = tk.IntVar(value=15)  # default value
     ttk.Entry(root, textvariable=duration_var).pack(pady=5)
 
     # Define commands with their emojis
